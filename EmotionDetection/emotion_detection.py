@@ -23,12 +23,4 @@ def emotion_detector(text_to_analyse):
           if isinstance(value, (int, float)):
              emotion_scores[key] = None
 
-    formatted_response = json.loads(response.text)
-    emotion_scores = formatted_response['emotionPredictions'][0]['emotion']
-
-    dominant_emotion = max(emotion_scores, key=emotion_scores.get)
-    #dominant_score = emotion_scores[dominant_emotion]
-
-    emotion_scores['dominant_emotion'] = dominant_emotion
-
     return emotion_scores
