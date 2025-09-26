@@ -7,6 +7,22 @@ def emotion_detector(text_to_analyse):
 
     response = requests.post(url, json = myObj, headers=header)
 
+    # If the response status code is 200, extract the label and score from the response
+    if response.status_code == 200:
+        formatted_response = json.loads(response.text)
+        emotion_scores = formatted_response['emotionPredictions'][0]['emotion']
+
+        dominant_emotion = max(emotion_scores, key=emotion_scores.get)
+        #dominant_score = emotion_scores[dominant_emotion]
+
+        emotion_scores['dominant_emotion'] = dominant_emotion
+
+    # If the response status code is 400, return same dictionary with values for all keys being 'None' 
+    elif response.status_code == 400:
+        for key, value in emotion_scores.items():
+          if isinstance(value, (int, float)):
+             emotion_scores[key] = None
+
     formatted_response = json.loads(response.text)
     emotion_scores = formatted_response['emotionPredictions'][0]['emotion']
 
