@@ -1,3 +1,6 @@
+"""
+This module is to run webUI application using Flask
+"""
 from flask import Flask, render_template, request
 from EmotionDetection.emotion_detection import emotion_detector
 
