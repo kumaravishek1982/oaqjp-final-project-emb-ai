@@ -5,6 +5,12 @@ app = Flask("Emotion Detector")
 
 @app.route("/emotionDetector")
 def emo_detector():
+    """
+    Retrives the emotion expressed in a sentence
+
+    returns:
+    emotions attached to the sentence including dominant emotion 
+    """
     # Retrieve the text to analyze from the request arguments
     text_to_analyze = request.args.get('textToAnalyze')
 
@@ -15,9 +21,14 @@ def emo_detector():
         return "Invalid text! Please try again."
     else:
         return emotion
-    
 @app.route("/")
 def render_index_page():
+    """
+    Interface for the application presented in standard HTML
+
+    Parameters:
+    None
+    """
     return render_template('index.html')
 
 if __name__ == "__main__":
