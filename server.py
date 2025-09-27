@@ -11,7 +11,10 @@ def emo_detector():
     # Pass the text to the emotion_detector function and store the response
     emotion = emotion_detector(text_to_analyze)
 
-    return emotion
+    if emotion.get("dominant_emotion") == "None":
+        return "Invalid text! Please try again."
+    else:
+        return emotion
     
 @app.route("/")
 def render_index_page():
