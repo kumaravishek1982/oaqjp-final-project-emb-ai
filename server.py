@@ -22,8 +22,7 @@ def emo_detector():
 
     if emotion.get("dominant_emotion") == "None":
         return "Invalid text! Please try again."
-    else:
-        return emotion
+    return emotion
 @app.route("/")
 def render_index_page():
     """
